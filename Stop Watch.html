@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <title>Stop Watch</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 11%;
+            padding: 20px;
+            background: url(https://a-static.besthdwallpaper.com/technology-binary-number-programming-wallpaper-1440x900-69478_4.jpg);
+            background-size: cover;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, .018);
+            width: 740px;
+            height: 250px;
+            justify-content: center;
+            align-items: center;
+            margin-left: 300px;
+            
+        }
+
+        .txt {
+            font-family: serif;
+            font-size: 30px;
+            font-weight: bold;
+
+        }
+
+        .digit {
+            font-size: 120px;
+            font-family: "digital-7";
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="time" id="time">
+            <span class="digit" id="hr">00</span>
+            <span class="txt">Hr</span> &nbsp&nbsp&nbsp&nbsp
+            <span class="digit" id="min">00</span>
+            <span class="txt">Min</span> &nbsp&nbsp&nbsp&nbsp
+            <span class="digit" id="sec">00</span>
+            <span class="txt">Sec</span> &nbsp&nbsp&nbsp&nbsp
+            <span class="digit" id="count">00</span>
+        </div>
+        <button class="btn btn-danger" onclick="stop()" id="stop">Stop</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <button class="btn btn-success" onclick="start()"
+            id="start">Start</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <button class="btn btn-warning" onclick="reset()" id="reset">Reset</button>
+    </div>
+
+    <script>
+        var hr = 0;
+        var min = 0;
+        var sec = 0;
+        var count = 0;
+
+        var timer = false;
+
+        function start() {
+            timer = true;
+            stopwatch();
+        }
+
+        function stop() {
+            timer = false;
+        }
+
+        function reset() {
+            timer = false;
+
+            hr = 0;
+            min = 0;
+            sec = 0;
+
+            document.getElementById("hr").innerHTML = "00";
+            document.getElementById("min").innerHTML = "00";
+            document.getElementById("sec").innerHTML = "00";
+            document.getElementById("count").innerHTML = "00";
+
+        }
+
+        function stopwatch() {
+            if (timer == true) {
+                count = count + 1;
+                if (count == 100) {
+                    sec = sec + 1;
+                    count = 0
+                }
+                if (sec == 60) {
+                    min = min + 1;
+                    sec = 0;
+                } if (min == 60) {
+                    hr = hr + 1;
+                    min = 0;
+                }
+
+                
+                let hrString = hr;
+                let minString = min;
+                let secString = sec;
+                let countString = count;
+
+                if (hr < 10) {
+                    hrString = "0" + hrString;
+                }
+
+                if (min < 10) {
+                    minString = "0" + minString;
+                }
+
+                if (sec < 10) {
+                    secString = "0" + secString;
+                }
+
+                if (count < 10) {
+                    countString = "0" + countString;
+                }
+
+                document.getElementById("hr").innerHTML = hrString;
+                document.getElementById("min").innerHTML = minString;
+                document.getElementById("sec").innerHTML = secString;
+                document.getElementById("count").innerHTML = countString;
+                setTimeout("stopwatch()", 10);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
